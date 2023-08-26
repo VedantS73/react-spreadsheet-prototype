@@ -35,25 +35,35 @@ import Spreadsheet from "react-spreadsheet";
 
 const App = () => {
   const [data, setData] = useState([
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
+    [{ value: "aaa" }, { value: "ccc" }],
+    [{ value: "bbb" }, { value: "ddd" }],
   ]);
   let col = ["Req no","Wip Line id","Product","Collection","TOC Order","Department"]
 
-  return <Spreadsheet data={data} onChange={setData([
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }, { value: "" }],
-  ])} columnLabels={col}/>;
+  return <Spreadsheet data={data} 
+  onChange={(d)=>{
+    const t = d
+    const string = d[0][2]
+    console.log("str is ",string)
+    
+    if(string === '1'){
+      t[0][5] = "SS"
+    }
+    else if(string === "2"){
+      t[0][5] = "CASTING"
+    }
+    else if(string === "3"){
+      t[0][5] = "JUNA"
+    }
+    else if(string === "4"){
+      t[0][5] = "GHAT"
+    }
+    else {
+      t[0][5] = "none"
+    }
+    setData(t)
+  }} 
+  columnLabels={col}/>;
 };
 
 export default App
